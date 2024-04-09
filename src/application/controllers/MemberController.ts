@@ -8,6 +8,9 @@ export class MemberController {
 
   @Post()
   async registerMember(@Body() registerMemberDto: RegisterMemberDto) {
-    return await this.memberService.registerMember(registerMemberDto.name, registerMemberDto.email);
+    return await this.memberService.registerMember(
+      registerMemberDto.name,
+      registerMemberDto.email,
+    );
   }
 }
