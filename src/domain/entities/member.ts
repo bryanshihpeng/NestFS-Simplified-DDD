@@ -5,7 +5,6 @@ import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
 export class Member {
   @PrimaryKey()
   id!: number;
-  ...
 
   @Property()
   name: string;

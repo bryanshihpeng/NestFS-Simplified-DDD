@@ -40,8 +40,10 @@ export class BookController {
 
   @Get(':id/borrows')
   async getBookBorrowRecords(@Param('id') bookId: number) {
-    const borrowRecords = await this.borrowService.getAllBorrowRecords(bookId);
-    return borrowRecords.map((record) => new BorrowRecordResponseDto(record));
+    const book = await this.em.findOneOrFail(Book, { id: bookId });
+    return book.borrowRecords.map(
+      (record) => new BorrowRecordResponseDto(record),
+    );
   }
 
   @Get()

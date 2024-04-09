@@ -31,29 +31,14 @@ export class Book {
   }
 
   get isAvailable(): boolean {
-    return this.borrowRecords.exists((record) => !!record.returnDate);
+    return (
+      this.borrowRecords.length == 0 ||
+      this.borrowRecords.exists(
+        (record) => !!record.returnDate && !!record.borrowDate,
+      )
+    );
   }
 
-  borrowBook(member: Member, borrowDate: Date = new Date()) {
-    if (!this.isAvailable) {
-      throw new Error('Book is not available for borrowing.');
-    }
-    const record = new BorrowRecord(this, member, borrowDate);
-    this.borrowRecords.add(record);
-  }
-
-  return(borrowRecord: BorrowRecord) {
-    if (this.isAvailable) {
-      throw new Error('Book is already available.');
-    }
-    if (borrowRecord.book !== this) {
-      throw new Error('Borrow record does not belong to this book.');
-    }
-    if (borrowRecord.isOverdue()) {
-      // some logic to handle overdue
-    }
-    borrowRecord.returnBook();
-  }
   borrow(member: Member, borrowDate: Date = new Date()) {
     if (!this.isAvailable) {
       throw new Error('Book is not available for borrowing.');
