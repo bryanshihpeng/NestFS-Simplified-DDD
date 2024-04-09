@@ -1,9 +1,11 @@
 import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
 
 @Entity()
+// Aggregate Root for the Member aggregate
 export class Member {
   @PrimaryKey()
   id!: number;
+  ...
 
   @Property()
   name: string;
