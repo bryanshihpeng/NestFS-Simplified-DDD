@@ -1,7 +1,6 @@
 import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { Module } from '@nestjs/common';
 import { BookController } from 'src/application/interfaces/book.controller';
-import { BorrowController } from 'src/application/interfaces/borrow.controller';
 import { MemberController } from 'src/application/interfaces/member.controller';
 import { BorrowService } from 'src/application/services/borrow-service';
 

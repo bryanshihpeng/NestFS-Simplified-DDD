@@ -25,10 +25,10 @@ export class BorrowService {
     return borrowRecord;
   }
 
-  async getAllBorrowRecords(): Promise<BorrowRecord[]> {
+  async getAllBorrowRecords(bookId: number): Promise<BorrowRecord[]> {
     return await this.em.find(
       BorrowRecord,
-      {},
+      { id: bookId },
       { populate: ['book', 'member'] },
     );
   }
