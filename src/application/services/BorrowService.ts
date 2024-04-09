@@ -25,4 +25,12 @@ export class BorrowService {
     await this.em.persistAndFlush(borrowRecord);
     return borrowRecord;
   }
+
+  async getAllBorrowRecords(): Promise<BorrowRecord[]> {
+    return await this.em.find(BorrowRecord, {}, ['book', 'member']);
+  }
+
+  async getMemberBorrowRecords(memberId: number): Promise<BorrowRecord[]> {
+    return await this.em.find(BorrowRecord, { member: memberId }, ['book']);
+  }
 }
