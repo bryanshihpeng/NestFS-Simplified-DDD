@@ -1,7 +1,6 @@
-import { Options } from '@mikro-orm/core';
-import { PostgreSqlDriver } from '@mikro-orm/postgresql';
-import { Book } from './domain/entities/Book';
+import { Options, PostgreSqlDriver } from '@mikro-orm/postgresql';
 import * as dotenv from 'dotenv';
+import { Book } from 'src/domain/entities/Book';
 
 dotenv.config();
 

@@ -1,6 +1,6 @@
+import { EntityManager } from '@mikro-orm/postgresql';
 import { Injectable } from '@nestjs/common';
-import { EntityManager } from '@mikro-orm/core';
-import { Book } from '../../domain/entities/Book';
+import { Book } from 'src/domain/entities/Book';
 
 @Injectable()
 export class BookService {

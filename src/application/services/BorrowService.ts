@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { EntityManager } from '@mikro-orm/core';
+import { EntityManager } from '@mikro-orm/postgresql';
 import { Book } from 'src/domain/entities/Book';
 import { BorrowRecord } from 'src/domain/entities/BorrowRecord';
 import { Member } from 'src/domain/entities/Member';

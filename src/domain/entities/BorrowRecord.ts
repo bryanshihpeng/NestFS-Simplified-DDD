@@ -1,6 +1,6 @@
-import { Entity, PrimaryKey, Property, ManyToOne } from '@mikro-orm/core';
-import { Book } from './Book';
-import { Member } from './Member';
+import { Entity, ManyToOne, PrimaryKey, Property } from '@mikro-orm/core';
+import { Book } from 'src/domain/entities/Book';
+import { Member } from 'src/domain/entities/Member';
 
 @Entity()
 export class BorrowRecord {
