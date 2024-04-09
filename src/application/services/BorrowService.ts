@@ -27,10 +27,18 @@ export class BorrowService {
   }
 
   async getAllBorrowRecords(): Promise<BorrowRecord[]> {
-    return await this.em.find(BorrowRecord, {}, ['book', 'member']);
+    return await this.em.find(
+      BorrowRecord,
+      {},
+      { populate: ['book', 'member'] },
+    );
   }
 
   async getMemberBorrowRecords(memberId: number): Promise<BorrowRecord[]> {
-    return await this.em.find(BorrowRecord, { member: memberId }, ['book']);
+    return await this.em.find(
+      BorrowRecord,
+      { member: memberId },
+      { populate: ['book'] },
+    );
   }
 }
