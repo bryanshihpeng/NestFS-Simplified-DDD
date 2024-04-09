@@ -1,7 +1,7 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { EntityManager } from '@mikro-orm/core';
-import { BookService } from 'src/application/services/BookService';
-import { Book } from 'src/domain/entities/Book';
+import { Test, TestingModule } from '@nestjs/testing';
+import { BookService } from 'src/application/services/book.service';
+import { Book } from 'src/domain/entities/book';
 
 describe('BookService', () => {
   let service: BookService;

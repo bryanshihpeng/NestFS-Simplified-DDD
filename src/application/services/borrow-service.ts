@@ -1,8 +1,8 @@
-import { Injectable } from '@nestjs/common';
 import { EntityManager } from '@mikro-orm/postgresql';
-import { Book } from 'src/domain/entities/Book';
-import { BorrowRecord } from 'src/domain/entities/BorrowRecord';
-import { Member } from 'src/domain/entities/Member';
+import { Injectable } from '@nestjs/common';
+import { Book } from 'src/domain/entities/book';
+import { BorrowRecord } from 'src/domain/entities/borrow-record';
+import { Member } from 'src/domain/entities/member';
 
 @Injectable()
 export class BorrowService {

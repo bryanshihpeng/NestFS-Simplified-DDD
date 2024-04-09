@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
 import { EntityManager } from '@mikro-orm/postgresql';
-import { Member } from 'src/domain/entities/Member';
+import { Injectable } from '@nestjs/common';
+import { Member } from 'src/domain/entities/member';
 
 @Injectable()
 export class MemberService {
