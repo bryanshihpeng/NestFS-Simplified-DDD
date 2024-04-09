@@ -40,9 +40,8 @@ the Domain Layer and the Infrastructure Layer, focusing on Mikro-ORM for its dir
 │   │   └── interfaces/       - Application service interfaces (e.g., REST API controllers)
 │   │
 │   └── infrastructure/
-│       ├── orm/              - ORM configuration and entity mapping
-│       │   └── mikro-orm.config.ts
-│       └── repositories/     - Entity repository implementations (optional, managed by Mikro-ORM)
+│       └── orm/              - ORM configuration and entity mapping
+│           └── mikro-orm.config.ts
 ```
 
 ### Installation
