@@ -9,7 +9,7 @@ import config from 'src/infrastructure/orm/mikro-orm.config';
 
 @Module({
   imports: [MikroOrmModule.forRoot(config)],
-  controllers: [BookController, MemberController, BorrowController],
+  controllers: [BookController, MemberController],
   providers: [BorrowService],
 })
 export class AppModule {}
