@@ -1,4 +1,12 @@
-import { Entity, PrimaryKey, Property } from '@mikro-orm/core';
+import {
+  Collection,
+  Entity,
+  OneToMany,
+  PrimaryKey,
+  Property,
+} from '@mikro-orm/core';
+import { BorrowRecord } from 'src/domain/entities/borrow-record';
+import { Member } from 'src/domain/entities/member';
 
 @Entity()
 export class Book {
@@ -11,23 +19,39 @@ export class Book {
   @Property()
   author: string;
 
-  @Property({ default: true })
-  isAvailable: boolean;
+  @OneToMany(() => BorrowRecord, (borrowRecord) => borrowRecord.book, {
+    eager: true,
+  })
+  borrowRecords = new Collection<BorrowRecord>(this);
 
   constructor(title: string, author: string) {
     this.title = title;
     this.author = author;
-    this.isAvailable = true;
   }
 
-  borrowBook() {
+  get isAvailable(): boolean {
+    return this.borrowRecords.exists((record) => !!record.returnDate);
+  }
+
+  borrow(member: Member, borrowDate: Date = new Date()) {
     if (!this.isAvailable) {
       throw new Error('Book is not available for borrowing.');
     }
-    this.isAvailable = false;
+    const record = new BorrowRecord(this, member, borrowDate);
+    this.borrowRecords.add(record);
   }
 
-  returnBook() {
-    this.isAvailable = true;
+  return() {
+    if (this.isAvailable) {
+      throw new Error('Book is already available.');
+    }
+    const record = this.borrowRecords.find((record) => !record.returnDate);
+    if (!record) {
+      throw new Error('No active borrow record found.');
+    }
+    if (record.isOverdue()) {
+      // some logic to handle overdue
+    }
+    record.returnBook();
   }
 }

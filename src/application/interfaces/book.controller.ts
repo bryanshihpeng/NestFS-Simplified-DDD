@@ -1,38 +1,29 @@
-import { Body, Controller, Post } from '@nestjs/common';
-import { Body, Controller, Post, Get, Put, Param } from '@nestjs/common';
-import { CreateBookDto } from 'src/application/dtos/create-book.dto';
-import { UpdateBookDto } from 'src/application/dtos/update-book.dto';
-import { BookService } from 'src/application/services/book.service';
+import { EntityManager } from '@mikro-orm/postgresql';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { BookResponseDto } from 'src/application/dtos/book-response.dto';
+import { CreateBookDto } from 'src/application/dtos/create-book.dto';
+import { Book } from 'src/domain/entities/book';
 
 @Controller('books')
 export class BookController {
-  constructor(private readonly bookService: BookService) {}
+  constructor(private readonly em: EntityManager) {}
 
   @Post()
   async addBook(@Body() createBookDto: CreateBookDto) {
-    const book = await this.bookService.addNewBook(
-      createBookDto.title,
-      createBookDto.author,
-    );
+    const book = this.em.create(Book, createBookDto);
+    await this.em.persistAndFlush(book);
     return new BookResponseDto(book);
   }
 
   @Get()
   async getAllBooks() {
-    const books = await this.bookService.getAllBooks();
-    return books.map(book => new BookResponseDto(book));
+    const books = await this.em.find(Book, {});
+    return books.map((book) => new BookResponseDto(book));
   }
 
   @Get(':id')
   async getBookById(@Param('id') id: number) {
-    const book = await this.bookService.getBookById(id);
-    return new BookResponseDto(book);
-  }
-
-  @Put(':id')
-  async updateBook(@Param('id') id: number, @Body() updateBookDto: UpdateBookDto) {
-    const book = await this.bookService.updateBook(id, updateBookDto.title, updateBookDto.author, updateBookDto.isAvailable);
+    const book = await this.em.findOne(Book, { id });
     return new BookResponseDto(book);
   }
 }

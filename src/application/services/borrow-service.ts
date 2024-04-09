@@ -8,12 +8,11 @@ import { Member } from 'src/domain/entities/member';
 export class BorrowService {
   constructor(private readonly em: EntityManager) {}
 
-  async borrowBook(bookId: number, memberId: number): Promise<BorrowRecord> {
+  async borrowBook(bookId: number, memberId: number) {
     const book = await this.em.findOneOrFail(Book, bookId);
     const member = await this.em.findOneOrFail(Member, memberId);
-    const borrowRecord = new BorrowRecord(book, member);
-    await this.em.persistAndFlush(borrowRecord);
-    return borrowRecord;
+    book.borrow(member);
+    await this.em.persistAndFlush(book);
   }
 
   async returnBook(borrowRecordId: number): Promise<BorrowRecord> {

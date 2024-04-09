@@ -1,4 +1,5 @@
-import { IsNumber, IsString, IsDate } from 'class-validator';
+import { IsDate, IsNumber } from 'class-validator';
+import { BorrowRecord } from 'src/domain/entities/borrow-record';
 
 export class BorrowRecordResponseDto {
   @IsNumber()

@@ -1,4 +1,5 @@
 import { IsNumber, IsString } from 'class-validator';
+import { Book } from 'src/domain/entities/book';
 
 export class BookResponseDto {
   @IsNumber()

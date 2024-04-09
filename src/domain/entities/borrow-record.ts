@@ -23,7 +23,6 @@ export class BorrowRecord {
     this.book = book;
     this.member = member;
     this.borrowDate = borrowDate;
-    this.book.borrowBook();
   }
 
   returnBook() {
@@ -31,7 +30,6 @@ export class BorrowRecord {
       throw new Error('Book has already been returned.');
     }
     this.returnDate = new Date();
-    this.book.returnBook();
   }
 
   isOverdue(currentDate = new Date()): boolean {
