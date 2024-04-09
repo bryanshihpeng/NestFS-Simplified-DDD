@@ -32,6 +32,9 @@ describe('BookController', () => {
     const book = { id: 1, ...bookDto };
     jest.spyOn(bookService, 'addNewBook').mockResolvedValue(book);
     await expect(controller.addBook(bookDto)).resolves.toEqual(book);
-    expect(bookService.addNewBook).toHaveBeenCalledWith(bookDto.title, bookDto.author);
+    expect(bookService.addNewBook).toHaveBeenCalledWith(
+      bookDto.title,
+      bookDto.author,
+    );
   });
 });

@@ -32,7 +32,9 @@ describe('BookService', () => {
   it('should add a new book', async () => {
     const book = new Book('Test Book', 'Test Author');
     jest.spyOn(em, 'persistAndFlush').mockResolvedValue(undefined);
-    await expect(service.addNewBook('Test Book', 'Test Author')).resolves.toEqual(book);
+    await expect(
+      service.addNewBook('Test Book', 'Test Author'),
+    ).resolves.toEqual(book);
     expect(em.persistAndFlush).toHaveBeenCalledWith(book);
   });
 });
