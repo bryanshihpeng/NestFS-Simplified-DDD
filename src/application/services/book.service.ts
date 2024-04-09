@@ -11,4 +11,21 @@ export class BookService {
     await this.em.persistAndFlush(book);
     return book;
   }
+
+  async getAllBooks(): Promise<Book[]> {
+    return await this.em.find(Book, {});
+  }
+
+  async getBookById(id: number): Promise<Book> {
+    return await this.em.findOneOrFail(Book, id);
+  }
+
+  async updateBook(id: number, title?: string, author?: string, isAvailable?: boolean): Promise<Book> {
+    const book = await this.em.findOneOrFail(Book, id);
+    if (title !== undefined) book.title = title;
+    if (author !== undefined) book.author = author;
+    if (isAvailable !== undefined) book.isAvailable = isAvailable;
+    await this.em.persistAndFlush(book);
+    return book;
+  }
 }
