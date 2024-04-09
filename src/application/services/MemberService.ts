@@ -12,7 +12,11 @@ export class MemberService {
     return member;
   }
 
-  async updateMemberData(id: number, name: string, email: string): Promise<Member> {
+  async updateMemberData(
+    id: number,
+    name: string,
+    email: string,
+  ): Promise<Member> {
     const member = await this.em.findOneOrFail(Member, id);
     member.name = name;
     member.email = email;

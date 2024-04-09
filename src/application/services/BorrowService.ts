@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { EntityManager } from '@mikro-orm/core';
-import { BorrowRecord } from '../../domain/entities/BorrowRecord';
-import { Book } from '../../domain/entities/Book';
-import { Member } from '../../domain/entities/Member';
+import { Book } from 'src/domain/entities/Book';
+import { BorrowRecord } from 'src/domain/entities/BorrowRecord';
+import { Member } from 'src/domain/entities/Member';
 
 @Injectable()
 export class BorrowService {
@@ -17,7 +17,10 @@ export class BorrowService {
   }
 
   async returnBook(borrowRecordId: number): Promise<BorrowRecord> {
-    const borrowRecord = await this.em.findOneOrFail(BorrowRecord, borrowRecordId);
+    const borrowRecord = await this.em.findOneOrFail(
+      BorrowRecord,
+      borrowRecordId,
+    );
     borrowRecord.returnDate = new Date();
     await this.em.persistAndFlush(borrowRecord);
     return borrowRecord;
