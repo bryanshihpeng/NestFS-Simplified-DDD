@@ -14,5 +14,13 @@ export class Member {
   constructor(name: string, email: string) {
     this.name = name;
     this.email = email;
+    this.validateEmail();
+  }
+
+  private validateEmail() {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(this.email)) {
+      throw new Error('Invalid email format.');
+    }
   }
 }

@@ -23,5 +23,20 @@ export class BorrowRecord {
     this.book = book;
     this.member = member;
     this.borrowDate = borrowDate;
+    this.book.borrowBook();
+  }
+
+  returnBook() {
+    if (this.returnDate) {
+      throw new Error('Book has already been returned.');
+    }
+    this.returnDate = new Date();
+    this.book.returnBook();
+  }
+
+  isOverdue(currentDate: Date): boolean {
+    const dueDate = new Date(this.borrowDate);
+    dueDate.setDate(dueDate.getDate() + 30); // Assuming 30 days borrowing period
+    return currentDate > dueDate;
   }
 }
