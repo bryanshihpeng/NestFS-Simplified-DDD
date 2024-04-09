@@ -127,7 +127,7 @@ $ npm install
      constructor(private readonly em: EntityManager) {}
 
      async addNewBook(title: string, author: string): Promise<Book> {
-       const book = a new Book(title, author);
+       const book = new Book(title, author);
        await this.em.persistAndFlush(book);
        return book;
      }

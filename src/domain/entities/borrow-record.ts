@@ -19,7 +19,7 @@ export class BorrowRecord {
   @Property({ nullable: true })
   returnDate?: Date;
 
-  constructor(book: Book, member: Member, borrowDate: Date) {
+  constructor(book: Book, member: Member, borrowDate: Date = new Date()) {
     this.book = book;
     this.member = member;
     this.borrowDate = borrowDate;
@@ -34,7 +34,7 @@ export class BorrowRecord {
     this.book.returnBook();
   }
 
-  isOverdue(currentDate: Date): boolean {
+  isOverdue(currentDate = new Date()): boolean {
     const dueDate = new Date(this.borrowDate);
     dueDate.setDate(dueDate.getDate() + 30); // Assuming 30 days borrowing period
     return currentDate > dueDate;

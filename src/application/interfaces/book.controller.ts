@@ -1,5 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { CreateBookDto } from 'src/application/dtos/CreateBookDto';
+import { CreateBookDto } from 'src/application/dtos/create-book.dto';
 import { BookService } from 'src/application/services/book.service';
 
 @Controller('books')

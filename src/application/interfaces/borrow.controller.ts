@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { BorrowBookDto } from 'src/application/dtos/BorrowBookDto';
+import { BorrowBookDto } from 'src/application/dtos/borrow-book.dto';
 import { ReturnBookDto } from 'src/application/dtos/return-book.dto';
 import { BorrowService } from 'src/application/services/borrow-service';
 

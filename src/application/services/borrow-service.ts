@@ -3,8 +3,6 @@ import { Injectable } from '@nestjs/common';
 import { Book } from 'src/domain/entities/book';
 import { BorrowRecord } from 'src/domain/entities/borrow-record';
 import { Member } from 'src/domain/entities/member';
-import { Injectable } from '@nestjs/common';
-import { BorrowRecord } from 'src/domain/entities/borrow-record';
 
 @Injectable()
 export class BorrowService {
@@ -18,7 +16,6 @@ export class BorrowService {
     return borrowRecord;
   }
 
-  ... // Rest of the service remains unchanged
   async returnBook(borrowRecordId: number): Promise<BorrowRecord> {
     const borrowRecord = await this.em.findOneOrFail(
       BorrowRecord,
@@ -29,7 +26,6 @@ export class BorrowService {
     return borrowRecord;
   }
 
-  ... // Rest of the service remains unchanged
   async getAllBorrowRecords(): Promise<BorrowRecord[]> {
     return await this.em.find(
       BorrowRecord,
