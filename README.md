@@ -24,20 +24,20 @@ In Domain-Driven Design (DDD), there's typically a strong emphasis on the separa
 ├── src/
 │   ├── domain/
 │   │   ├── entities/         - Defines domain entities
-│   │   │   └── Book.ts       - 书籍实体
-│   │   └── interfaces/       - 领域服务接口（如果有）
+│   │   │   └── Book.ts       - Book entity
+│   │   └── interfaces/       - Domain service interfaces (if any)
 │   │
 │   ├── application/
-│   │   ├── dtos/             - 数据传输对象定义
+│   │   ├── dtos/             - Data transfer object definitions
 │   │   │   └── CreateBookDto.ts
-│   │   ├── services/         - 应用服务
+│   │   ├── services/         - Application services
 │   │   │   └── BookService.ts
-│   │   └── interfaces/       - 应用服务接口（如REST API控制器）
+│   │   └── interfaces/       - Application service interfaces (e.g., REST API controllers)
 │   │
 │   └── infrastructure/
-│       ├── orm/              - ORM配置和实体映射
+│       ├── orm/              - ORM configuration and entity mapping
 │       │   └── mikro-orm.config.ts
-│       └── repositories/     - 实体仓库实现（可选，由Mikro-ORM管理）
+│       └── repositories/     - Entity repository implementations (optional, managed by Mikro-ORM)
 ```
 
 ### Installation
