@@ -1,6 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { CreateBookDto } from 'src/application/dtos/create-book.dto';
 import { BookService } from 'src/application/services/book.service';
+import { BookResponseDto } from 'src/application/dtos/book-response.dto';
 
 @Controller('books')
 export class BookController {
@@ -8,9 +9,10 @@ export class BookController {
 
   @Post()
   async addBook(@Body() createBookDto: CreateBookDto) {
-    return await this.bookService.addNewBook(
+    const book = await this.bookService.addNewBook(
       createBookDto.title,
       createBookDto.author,
     );
+    return new BookResponseDto(book);
   }
 }
