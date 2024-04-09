@@ -6,8 +6,8 @@ import { Book } from 'src/domain/entities/book';
 export class BookService {
   constructor(private readonly em: EntityManager) {}
 
-  async addNewBook(title: string, author: string): Promise<Book> {
-    const book = new Book(title, author);
+  async addNewBook(title: string, author: string, isAvailable: boolean = true): Promise<Book> {
+    const book = new Book(title, author, isAvailable);
     await this.em.persistAndFlush(book);
     return book;
   }
